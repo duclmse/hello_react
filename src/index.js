@@ -1,9 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
-import GmailTreeView from "./Tree";
 import reportWebVitals from "./reportWebVitals";
-import Discord from "./Discord";
+import {Discord} from "./components/Discord";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
