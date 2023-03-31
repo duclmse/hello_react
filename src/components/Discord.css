@@ -60,23 +60,23 @@ body button {
   width: 16px;
 }
 
-.user-status-icon.away i {
+.user-status-icon.away svg {
   color: #faa81a;
 }
 
-.user-status-icon.busy i {
+.user-status-icon.busy svg {
   color: #ed4245;
 }
 
-.user-status-icon.offline i {
+.user-status-icon.offline svg {
   color: #969696;
 }
 
-.user-status-icon.online i {
+.user-status-icon.online svg {
   color: #3ba55d;
 }
 
-.user-status-icon i {
+.user-status-icon svg {
   font-size: 11px;
   height: 12px;
   line-height: 12px;
@@ -147,7 +147,7 @@ body button {
   width: 0;
 }
 
-#navbar-wrapper #navbar {
+#navbar {
   background-color: #202225;
   height: 100%;
   pointer-events: all;
@@ -155,7 +155,7 @@ body button {
   width: 70px;
 }
 
-#navbar-wrapper #navbar .navbar-section {
+.navbar-section {
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -163,7 +163,7 @@ body button {
   position: relative;
 }
 
-#navbar-wrapper #navbar .navbar-section:nth-of-type(n + 2):after {
+.navbar-section:nth-of-type(n + 2):after {
   background-color: #3c3c3c;
   border-radius: 2px;
   content: "";
@@ -175,7 +175,7 @@ body button {
   width: 50%;
 }
 
-#navbar-wrapper #navbar .navbar-item {
+.navbar-item {
   background-color: transparent;
   border: none;
   cursor: pointer;
@@ -186,29 +186,27 @@ body button {
   width: 70px;
 }
 
-#navbar-wrapper #navbar .navbar-item:hover:after,
-#navbar-wrapper #navbar .navbar-item:focus:after,
-#navbar-wrapper #navbar .navbar-item.active:after {
+.navbar-item:hover:after,
+.navbar-item:focus:after,
+.navbar-item.active:after {
   opacity: 1;
   transform: translateY(-50%);
 }
 
-#navbar-wrapper #navbar .navbar-item:hover .navbar-item-content,
-#navbar-wrapper #navbar .navbar-item:focus .navbar-item-content,
-#navbar-wrapper #navbar .navbar-item.active .navbar-item-content {
+.navbar-item-content {
   background-color: #5865f2;
   border-radius: 15px;
 }
 
-#navbar-wrapper #navbar .navbar-item:hover .tooltip {
+.navbar-item:hover .tooltip {
   opacity: 1;
 }
 
-#navbar-wrapper #navbar .navbar-item.active:after {
+.navbar-item.active:after {
   height: 40px;
 }
 
-#navbar-wrapper #navbar .navbar-item:after {
+.navbar-item:after {
   background-color: #e6e6e6;
   border-bottom-right-radius: 3px;
   border-top-right-radius: 3px;
@@ -223,23 +221,23 @@ body button {
   width: 4px;
 }
 
-#navbar-wrapper #navbar .navbar-item.default:hover .navbar-item-content,
-#navbar-wrapper #navbar .navbar-item.default:focus .navbar-item-content,
-#navbar-wrapper #navbar .navbar-item.default.active .navbar-item-content {
+.navbar-item.default:hover .navbar-item-content,
+.navbar-item.default:focus .navbar-item-content,
+.navbar-item.default.active .navbar-item-content {
   background-color: #3ba55d;
 }
 
-#navbar-wrapper #navbar .navbar-item.default:hover .navbar-item-content i,
-#navbar-wrapper #navbar .navbar-item.default:focus .navbar-item-content i,
-#navbar-wrapper #navbar .navbar-item.default.active .navbar-item-content i {
+.navbar-item.default:hover .navbar-item-content svg,
+.navbar-item.default:focus .navbar-item-content svg,
+.navbar-item.default.active .navbar-item-content svg {
   color: #e6e6e6;
 }
 
-#navbar-wrapper #navbar .navbar-item.default .navbar-item-content i {
+.navbar-item.default .navbar-item-content svg {
   color: #3ba55d;
 }
 
-#navbar-wrapper #navbar .navbar-item .navbar-item-content {
+.navbar-item .navbar-item-content {
   align-items: center;
   background-color: #36393f;
   border-radius: 50px;
@@ -251,7 +249,7 @@ body button {
   width: 50px;
 }
 
-#navbar-wrapper #navbar .navbar-item .navbar-item-content i {
+.navbar-item .navbar-item-content svg {
   color: #e6e6e6;
   font-size: 1.75em;
   height: 30px;
@@ -260,7 +258,7 @@ body button {
   transition: color 300ms;
 }
 
-#navbar-wrapper #navbar .navbar-item .navbar-item-content .navbar-item-image {
+.navbar-item .navbar-item-content .navbar-item-image {
   background-position: center;
   background-size: cover;
   border-radius: inherit;
@@ -275,7 +273,8 @@ body button {
   left: 70px;
   position: fixed;
   top: 0;
-  width: 230px;
+  width: 250px;
+  max-width: 500px;
 }
 
 #content-navigator #direct-messages {
@@ -308,7 +307,7 @@ body button {
   opacity: 1;
 }
 
-#content-navigator #direct-messages #direct-messages-header #direct-messages-add-button i {
+#content-navigator #direct-messages #direct-messages-header #direct-messages-add-button svg {
   color: #c8c8c8;
 }
 
@@ -527,7 +526,7 @@ body button {
   #current-user
   #current-user-control-buttons
   .current-user-control-button
-  i {
+  svg {
   color: #b4b4b4;
   font-size: 1.25em;
   height: 18px;
@@ -600,7 +599,7 @@ body button {
   #current-user-control-menu
   .current-user-control-menu-button
   .current-user-control-menu-button-icon
-  > i {
+  > svg {
   color: #c8c8c8;
 }
 
@@ -672,17 +671,17 @@ body button {
   background-color: #42464d;
 }
 
-#content-navigator .content-navigator-button:hover > i,
+#content-navigator .content-navigator-button:hover > svg,
 #content-navigator .content-navigator-button:hover > p {
   color: #c8c8c8;
 }
 
-#content-navigator .content-navigator-button > i,
+#content-navigator .content-navigator-button > svg,
 #content-navigator .content-navigator-button > p {
   color: #969696;
 }
 
-#content-navigator .content-navigator-button > i {
+#content-navigator .content-navigator-button > svg {
   font-size: 1.5em;
   width: 30px;
 }
@@ -700,7 +699,7 @@ body button {
   height: 100vh;
 }
 
-#active-content i {
+#active-content svg {
   animation: fadeIn 250ms ease-in;
   color: #969696;
   font-size: 10em;

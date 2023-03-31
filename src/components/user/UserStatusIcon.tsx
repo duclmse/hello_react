@@ -1,3 +1,5 @@
+import {IconName, IconPrefix} from "@fortawesome/fontawesome-svg-core";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import classNames from "classnames";
 import {UserStatus} from "./User";
 
@@ -5,24 +7,24 @@ export interface IUserStatusIconProps {
   status: UserStatus;
 }
 
-export const UserStatusIcon: React.FC<IUserStatusIconProps> = (props) => {
+export const UserStatusIcon: React.FC<IUserStatusIconProps> = props => {
   const {status} = props;
-  const getIcon = (): string => {
+  const getIcon = (): [IconPrefix, IconName] => {
     switch (status) {
       case UserStatus.Away:
-        return "fa-solid fa-moon";
+        return ["fas", "moon"];
       case UserStatus.Busy:
-        return "fa-solid fa-do-not-enter";
+        return ["fas", "ban"];
       case UserStatus.Offline:
-        return "fa-solid fa-circle-dot";
+        return ["fas", "circle-dot"];
       case UserStatus.Online:
-        return "fa-solid fa-circle";
+        return ["fas", "circle"];
     }
   };
 
   return (
-      <div className={classNames("user-status-icon", status.toLowerCase())}>
-        <i className={getIcon()}/>
-      </div>
+    <div className={classNames("user-status-icon", status.toLowerCase())}>
+      <FontAwesomeIcon icon={getIcon()} />
+    </div>
   );
 };

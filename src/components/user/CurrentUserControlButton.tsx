@@ -1,16 +1,18 @@
+import {IconName, IconPrefix} from "@fortawesome/fontawesome-svg-core";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import React from "react";
 import {Tooltip, TooltipDirection} from "../utils/Tooltip";
 
 export interface ICurrentUserControlButtonProps {
-  icon: string;
+  icon: [IconPrefix, IconName];
   tooltip: string;
 }
 
-export const CurrentUserControlButton: React.FC<ICurrentUserControlButtonProps> = (props) => {
+export const CurrentUserControlButton: React.FC<ICurrentUserControlButtonProps> = props => {
   return (
-      <button className="current-user-control-button">
-        <i className={props.icon}/>
-        <Tooltip direction={TooltipDirection.Top} text={props.tooltip}/>
-      </button>
+    <button className="current-user-control-button">
+      <FontAwesomeIcon icon={props.icon} />
+      <Tooltip direction={TooltipDirection.Top} text={props.tooltip} />
+    </button>
   );
 };

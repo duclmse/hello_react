@@ -1,9 +1,10 @@
-import React from "react";
+import React, {MouseEventHandler} from "react";
 import {IDiscordAppContext} from "../Discord";
 import {CurrentUserControl} from "../user/CurrentUserControl";
 import {UserStatus} from "../user/User";
 import {ContentNavigatorButton} from "./ContentNavigatorButton";
 import {DirectMessages} from "./DirectMessage";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 export interface IContentNavigator {
   context: React.Context<IDiscordAppContext>;
@@ -11,6 +12,11 @@ export interface IContentNavigator {
 
 export const ContentNavigator: React.FC<IContentNavigator> = props => {
   let {context} = props;
+
+  const createDM: MouseEventHandler<HTMLButtonElement> = e => {
+    console.log(e);
+  };
+
   return (
     <div id="content-navigator">
       <button id="content-navigator-search-bar-toggle" type="button">
@@ -19,11 +25,11 @@ export const ContentNavigator: React.FC<IContentNavigator> = props => {
 
       <div className="content-navigator-section">
         <ContentNavigatorButton>
-          <i className="fa-solid fa-person-drowning" />
+          <FontAwesomeIcon icon={["fas", "person-drowning"]} size="lg" />
           <p>Friends</p>
         </ContentNavigatorButton>
         <ContentNavigatorButton>
-          <i className="fa-solid fa-fire" />
+          <FontAwesomeIcon icon={["fas", "fire"]} size="lg" />
           <p>Nitro</p>
         </ContentNavigatorButton>
         <DirectMessages
@@ -51,6 +57,7 @@ export const ContentNavigator: React.FC<IContentNavigator> = props => {
               username: "Squirtle",
             },
           ]}
+          createDM={createDM}
         />
       </div>
 

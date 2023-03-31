@@ -26,7 +26,7 @@ export const Discord: React.FC = () => {
     user: {
       id: "1234",
       image:
-          "https://images.unsplash.com/photo-1562376552-0d160a2f238d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8d2FmZmxlc3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=50&q=60",
+        "https://images.unsplash.com/photo-1562376552-0d160a2f238d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8d2FmZmxlc3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=50&q=60",
       status: UserStatus.Online,
       username: "Hyperplexed",
     },
@@ -37,13 +37,12 @@ export const Discord: React.FC = () => {
   };
 
   return (
-      <AppContext.Provider value={{state, user: state.user, setState: setState, selectContentID}}>
-        <div id="discord-app">
-          <Navbar context={AppContext}/>
-          <ContentNavigator context={AppContext}/>
-          <ActiveContent context={AppContext}/>
-        </div>
-      </AppContext.Provider>
+    <AppContext.Provider value={{state, user: state.user, setState, selectContentID}}>
+      <div id="discord-app">
+        <Navbar context={AppContext} />
+        <ContentNavigator context={AppContext} />
+        <ActiveContent context={AppContext} />
+      </div>
+    </AppContext.Provider>
   );
 };
-

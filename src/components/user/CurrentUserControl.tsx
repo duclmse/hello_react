@@ -8,7 +8,7 @@ export interface ICurrentUserControl {
   context: React.Context<IDiscordAppContext>;
 }
 
-export const CurrentUserControl: React.FC<ICurrentUserControl> = (props) => {
+export const CurrentUserControl: React.FC<ICurrentUserControl> = props => {
   const {user} = React.useContext(props.context);
 
   const [menuToggled, toggleMenu] = React.useState<boolean>(false);
@@ -18,24 +18,22 @@ export const CurrentUserControl: React.FC<ICurrentUserControl> = (props) => {
   };
 
   return (
-      <div id="current-user-control">
-        <div id="current-user">
-          <button id="current-user-menu-button" type="button" onClick={handleOnClick}>
-            <UserIcon user={user}/>
-          </button>
-          <div id="current-user-details">
-            <label id="current-user-username">{user.username}</label>
-            <label id="current-user-id">#{user.id}</label>
-          </div>
-          <div id="current-user-control-buttons">
-            <CurrentUserControlButton icon="fa-solid fa-microphone" tooltip="Mute"/>
-            <CurrentUserControlButton icon="fa-solid fa-headphones" tooltip="Deafen"/>
-            <CurrentUserControlButton icon="fa-solid fa-gear" tooltip="User Settings"/>
-          </div>
+    <div id="current-user-control">
+      <div id="current-user">
+        <button id="current-user-menu-button" type="button" onClick={handleOnClick}>
+          <UserIcon user={user} />
+        </button>
+        <div id="current-user-details">
+          <label id="current-user-username">{user.username}</label>
+          <label id="current-user-id">#{user.id}</label>
         </div>
-        {menuToggled && (
-            <CurrentUserControlMenu/>
-        )}
+        <div id="current-user-control-buttons">
+          <CurrentUserControlButton icon={["fas", "microphone"]} tooltip="Mute" />
+          <CurrentUserControlButton icon={["fas", "headphones"]} tooltip="Deafen" />
+          <CurrentUserControlButton icon={["fas", "gear"]} tooltip="User Settings" />
+        </div>
       </div>
+      {menuToggled && <CurrentUserControlMenu />}
+    </div>
   );
 };

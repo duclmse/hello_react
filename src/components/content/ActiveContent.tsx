@@ -1,5 +1,7 @@
 import React from "react";
 import {IDiscordAppContext} from "../Discord";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {IconName, IconPrefix} from "@fortawesome/fontawesome-svg-core";
 
 export enum ContentID {
   AddServer = "Add Server",
@@ -14,33 +16,35 @@ export enum CustomContentID {
 }
 
 export interface IActiveContent {
-  context: React.Context<IDiscordAppContext>
+  context: React.Context<IDiscordAppContext>;
 }
 
-export const ActiveContent: React.FC<IActiveContent> = (props) => {
+export const ActiveContent: React.FC<IActiveContent> = props => {
   const {state} = React.useContext(props.context);
 
-  const getContentIcon = () => {
+  function getContentIcon(): [IconPrefix, IconName] {
     switch (state.activeContentID) {
       case ContentID.Home:
-        return "fa-brands fa-discord";
+        return ["fab", "discord"];
       case ContentID.AddServer:
-        return "fa-solid fa-plus";
+        return ["fas", "plus"];
       case ContentID.Explore:
-        return "fa-solid fa-compass";
+        return ["fas", "compass"];
 
       case CustomContentID.GamingServer:
-        return "fa-solid fa-gamepad-modern";
+        return ["fas", "gamepad"];
       case CustomContentID.PandaPeopleServer:
-        return "fa-regular fa-teddy-bear";
+        return ["fas", "teddy-bear"];
       case CustomContentID.PizzaLoversServer:
-        return "fa-regular fa-pizza-slice";
+        return ["fas", "pizza"];
+      default:
+        return ["fab", "discord"];
     }
-  };
+  }
 
   return (
-      <div id="active-content">
-        <i key={state.activeContentID} className={getContentIcon()}/>
-      </div>
+    <div id="active-content">
+      <FontAwesomeIcon key={state.activeContentID} icon={getContentIcon()} size="5x" />
+    </div>
   );
 };

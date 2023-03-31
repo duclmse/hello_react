@@ -3,11 +3,13 @@ import React from "react";
 import {ContentID} from "../content/ActiveContent";
 import {IDiscordAppContext} from "../Discord";
 import {Tooltip} from "../utils/Tooltip";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {IconProp} from "@fortawesome/fontawesome-svg-core";
 
 export interface INavbarItemProps {
   color?: string;
   contentID: ContentID | string;
-  icon?: string;
+  icon?: IconProp;
   image?: string;
   label: string;
   type: NavbarItemType;
@@ -26,7 +28,7 @@ export interface ICustomNavbarItem {
   label: string;
 }
 
-export const NavbarItem: React.FC<INavbarItemProps> = (props) => {
+export const NavbarItem: React.FC<INavbarItemProps> = props => {
   const {color, contentID, icon, image, label, type, context} = props;
   const {state, selectContentID} = React.useContext(context);
 
@@ -34,26 +36,26 @@ export const NavbarItem: React.FC<INavbarItemProps> = (props) => {
     selectContentID(contentID as ContentID);
   };
 
+  const getStyles = (): React.CSSProperties => {
+    const styles: React.CSSProperties = {};
+
+    if (color) {
+      styles.color = `rgb(${color})`;
+    }
+
+    return styles;
+  };
+
   const getContent = () => {
     if (icon) {
-      const getStyles = (): React.CSSProperties => {
-        const styles: React.CSSProperties = {};
-
-        if (color) {
-          styles.color = `rgb(${color})`;
-        }
-
-        return styles;
-      };
-
-      return <i className={icon} style={getStyles()}/>;
+      return <FontAwesomeIcon icon={icon} style={getStyles()} size="2x" />;
     }
     if (image) {
       const styles: React.CSSProperties = {
         backgroundImage: `url(${image})`,
       };
 
-      return <div className="navbar-item-image" style={styles}/>;
+      return <div className="navbar-item-image" style={styles} />;
     }
   };
 
@@ -64,9 +66,9 @@ export const NavbarItem: React.FC<INavbarItemProps> = (props) => {
   };
 
   return (
-      <button type="button" className={getClasses()} onClick={handleOnClick}>
-        <div className="navbar-item-content">{getContent()}</div>
-        <Tooltip text={label}/>
-      </button>
+    <button type="button" className={getClasses()} onClick={handleOnClick}>
+      <div className="navbar-item-content">{getContent()}</div>
+      <Tooltip text={label} />
+    </button>
   );
 };
