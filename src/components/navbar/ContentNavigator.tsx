@@ -1,4 +1,4 @@
-import React, {MouseEventHandler} from "react";
+import {MouseEventHandler, Context, FC} from "react";
 import {IDiscordAppContext} from "../Discord";
 import {CurrentUserControl} from "../user/CurrentUserControl";
 import {UserStatus} from "../user/User";
@@ -7,10 +7,10 @@ import {DirectMessages} from "./DirectMessage";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 export interface IContentNavigator {
-  context: React.Context<IDiscordAppContext>;
+  context: Context<IDiscordAppContext>;
 }
 
-export const ContentNavigator: React.FC<IContentNavigator> = props => {
+export const ContentNavigator: FC<IContentNavigator> = props => {
   let {context} = props;
 
   const createDM: MouseEventHandler<HTMLButtonElement> = e => {

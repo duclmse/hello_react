@@ -1,6 +1,5 @@
-// import PropTypes from "prop-types";
-// import {DraggableCore} from "react-draggable";
-// import type {Element as ReactElement, ElementConfig} from "react";
+import {DraggableCore} from "react-draggable";
+import type {ReactElement} from "react";
 
 export type ReactRef<T extends HTMLElement> = {
   current: T | null;
@@ -44,125 +43,125 @@ export type DefaultProps = {
   transformScale: number;
 };
 
-// export type Props = DefaultProps & {
-//   children: ReactElement<any>;
-//   className?: string | null;
-//   draggableOpts?: ElementConfig<typeof DraggableCore> | null;
-//   height: number;
-//   handle?: ReactElement<any> | ((resizeHandleAxis: ResizeHandleAxis, ref: ReactRef<HTMLElement>) => ReactElement<any>);
-//   onResizeStop?: ((e: React.SyntheticEvent, data: ResizeCallbackData) => any) | null | undefined;
-//   onResizeStart?: ((e: React.SyntheticEvent, data: ResizeCallbackData) => any) | null | undefined;
-//   onResize?: ((e: React.SyntheticEvent, data: ResizeCallbackData) => any) | null | undefined;
-//   width: number;
-// };
+export type Props = DefaultProps & {
+  children: ReactElement<any>;
+  className?: string | null;
+  draggableOpts?: DraggableOpts;
+  height: number;
+  handle?: ReactElement<any> | ((resizeHandleAxis: ResizeHandleAxis, ref: ReactRef<HTMLElement>) => ReactElement<any>);
+  onResizeStop?: ((e: React.SyntheticEvent, data: ResizeCallbackData) => any) | null;
+  onResizeStart?: ((e: React.SyntheticEvent, data: ResizeCallbackData) => any) | null;
+  onResize?: ((e: React.SyntheticEvent, data: ResizeCallbackData) => any) | null;
+  width: number;
+};
 
-// export const resizableProps: Record<string, any> = {
-//   /*
-//    * Restricts resizing to a particular axis (default: 'both')
-//    * 'both' - allows resizing by width or height
-//    * 'x' - only allows the width to be changed
-//    * 'y' - only allows the height to be changed
-//    * 'none' - disables resizing altogether
-//    */
-//   axis: PropTypes.oneOf(["both", "x", "y", "none"]),
-//   className: PropTypes.string,
+export interface DraggableOpts {
+  allowAnyClick: boolean;
+  cancel: string;
+  children: Node;
+  disabled: boolean;
+  enableUserSelectHack: boolean;
+  offsetParent: Node;
+  grid: number[];
+  handle: string;
+  nodeRef: object;
+  onStart: Function;
+  onDrag: Function;
+  onStop: Function;
+  onMouseDown: Function;
+  scale: number;
+}
 
-//   /* Require that one and only one child be present. */
-//   children: PropTypes.element.isRequired,
+export interface resizableProps {
+  /*
+   * Restricts resizing to a particular axis (default: 'both')
+   * 'both' - allows resizing by width or height
+   * 'x' - only allows the width to be changed
+   * 'y' - only allows the height to be changed
+   * 'none' - disables resizing altogether
+   */
+  axis: "both" | "x" | "y" | "none";
+  className: string;
 
-//   /*
-//    * These will be passed wholesale to react-draggable's DraggableCore
-//    */
-//   draggableOpts: PropTypes.shape({
-//     allowAnyClick: PropTypes.bool,
-//     cancel: PropTypes.string,
-//     children: PropTypes.node,
-//     disabled: PropTypes.bool,
-//     enableUserSelectHack: PropTypes.bool,
-//     offsetParent: PropTypes.node,
-//     grid: PropTypes.arrayOf(PropTypes.number),
-//     handle: PropTypes.string,
-//     nodeRef: PropTypes.object,
-//     onStart: PropTypes.func,
-//     onDrag: PropTypes.func,
-//     onStop: PropTypes.func,
-//     onMouseDown: PropTypes.func,
-//     scale: PropTypes.number,
-//   }),
+  /* Require that one and only one child be present. */
+  children: ReactElement;
 
-//   /*
-//    * Initial height
-//    */
-//   height: (...args) => {
-//     const [props] = args;
+  /*
+   * These will be passed wholesale to react-draggable's DraggableCore
+   */
+  draggableOpts: DraggableOpts;
 
-//     // Required if resizing height or both
-//     if (props.axis === "both" || props.axis === "y") {
-//       return PropTypes.number.isRequired(...args);
-//     }
+  /*
+   * Initial height
+   */
+  height: (...args: any) => {
+    // const [props] = args;
+    // // Required if resizing height or both
+    // if (props.axis === "both" || props.axis === "y") {
+    //   return number.isRequired(...args);
+    // }
+    // return number(...args);
+  };
 
-//     return PropTypes.number(...args);
-//   },
+  /*
+   * Customize cursor resize handle
+   */
+  handle: Node | Function;
 
-//   /*
-//    * Customize cursor resize handle
-//    */
-//   handle: PropTypes.oneOfType([PropTypes.node, PropTypes.func]),
+  /*
+   * If you change this, be sure to update your css
+   */
+  handleSize: number[];
+  lockAspectRatio: boolean;
 
-//   /*
-//    * If you change this, be sure to update your css
-//    */
-//   handleSize: PropTypes.arrayOf(PropTypes.number),
-//   lockAspectRatio: PropTypes.bool,
+  /*
+   * Max X & Y measure
+   */
+  maxConstraints: number[];
 
-//   /*
-//    * Max X & Y measure
-//    */
-//   maxConstraints: PropTypes.arrayOf(PropTypes.number),
+  /*
+   * Min X & Y measure
+   */
+  minConstraints: number[];
 
-//   /*
-//    * Min X & Y measure
-//    */
-//   minConstraints: PropTypes.arrayOf(PropTypes.number),
+  /*
+   * Called on stop resize event
+   */
+  onResizeStop: Function;
+  /** Called on start resize event */
+  onResizeStart: Function;
+  /** Called on resize event */
+  onResize: Function;
 
-//   /*
-//    * Called on stop resize event
-//    */
-//   onResizeStop: PropTypes.func,
-//   /** Called on start resize event */
-//   onResizeStart: PropTypes.func,
-//   /** Called on resize event */
-//   onResize: PropTypes.func,
+  /** Defines which resize handles should be rendered (default: 'se') */
+  resizeHandles: Direction[];
 
-//   /**
-//    * Defines which resize handles should be rendered (default: 'se')
-//    * 's' - South handle (bottom-center)
-//    * 'w' - West handle (left-center)
-//    * 'e' - East handle (right-center)
-//    * 'n' - North handle (top-center)
-//    * 'sw' - Southwest handle (bottom-left)
-//    * 'nw' - Northwest handle (top-left)
-//    * 'se' - Southeast handle (bottom-right)
-//    * 'ne' - Northeast handle (top-center)
-//    */
-//   resizeHandles: PropTypes.arrayOf(PropTypes.oneOf(["s", "w", "e", "n", "sw", "nw", "se", "ne"])),
+  /*
+   * If `transform: scale(n)` is set on the parent, this should be set to `n`.
+   */
+  transformScale: number;
 
-//   /*
-//    * If `transform: scale(n)` is set on the parent, this should be set to `n`.
-//    */
-//   transformScale: PropTypes.number,
+  /*
+   * Initial width
+   */
+  width: (...args: any) => {
+    // const [props] = args;
+    // // Required if resizing width or both
+    // if (props.axis === "both" || props.axis === "x") {
+    //   return number.isRequired(...args);
+    // }
+    // return number(...args);
+  };
+}
 
-//   /*
-//    * Initial width
-//    */
-//   width: (...args) => {
-//     const [props] = args;
-
-//     // Required if resizing width or both
-//     if (props.axis === "both" || props.axis === "x") {
-//       return PropTypes.number.isRequired(...args);
-//     }
-
-//     return PropTypes.number(...args);
-//   },
-// };
+/**
+ * 's' - South (bottom-center)
+ * 'w' - West (left-center)
+ * 'e' - East (right-center)
+ * 'n' - North (top-center)
+ * 'sw' - Southwest (bottom-left)
+ * 'nw' - Northwest (top-left)
+ * 'se' - Southeast (bottom-right)
+ * 'ne' - Northeast (top-center)
+ */
+type Direction = "s" | "w" | "e" | "n" | "sw" | "nw" | "se" | "ne";

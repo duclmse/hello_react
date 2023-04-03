@@ -38,7 +38,7 @@ export const Discord: React.FC = () => {
 
   return (
     <AppContext.Provider value={{state, user: state.user, setState, selectContentID}}>
-      <div id="discord-app">
+      <div id="discord-app" className="">
         <Navbar context={AppContext} />
         <ContentNavigator context={AppContext} />
         <ActiveContent context={AppContext} />
